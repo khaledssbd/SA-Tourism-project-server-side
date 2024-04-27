@@ -8,12 +8,22 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // all middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      'https://sa-tourism-khaled.web.app',
+      'https://ph-a10-client-by-khaled.vercel.app',
+      'https://ph-a10-client-by-khaled.surge.sh',
+      'https://ph-a10-client-by-khaled.netlify.app',
+    ],
+  })
+);
+
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2brfitt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -24,9 +34,6 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    // await client.connect();
-
     const saTourismSpotCollection = client
       .db('saTourismDB')
       .collection('places');
@@ -100,79 +107,11 @@ async function run() {
       res.send(result);
     });
 
-    // ----------------------------------------------------------------
-
-    // app.put('/place/:id', async (req, res) => {
-    //   const id = req.params.id;
-    //   const filter = { _id: new ObjectId(id) };
-    //   const options = { upsert: true };
-    //   const updatedPlace = req.body;
-
-    //   const place = {
-    //     $set: {
-    //       name: updatedPlace.name,
-    //       quantity: updatedPlace.quantity,
-    //       supplier: updatedPlace.supplier,
-    //       taste: updatedPlace.taste,
-    //       category: updatedPlace.category,
-    //       details: updatedPlace.details,
-    //       photo: updatedPlace.photo,
-    //     },
-    //   };
-
-    //   const result = await saTourismSpotCollection.updateOne(
-    //     filter,
-    //     place,
-    //     options
-    //   );
-    //   res.send(result);
-    // });
-
-    // app.delete('/place/:id', async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) };
-    //   const result = await saTourismSpotCollection.deleteOne(query);
-    //   res.send(result);
-    // });
-
-    // // user related apis
-    // app.get('/user', async (req, res) => {
-    //   const cursor = userCollection.find();
-    //   const users = await cursor.toArray();
-    //   res.send(users);
-    // });
-
-    // app.post('/user', async (req, res) => {
-    //   const user = req.body;
-    //   console.log(user);
-    //   const result = await userCollection.insertOne(user);
-    //   res.send(result);
-    // });
-
-    // app.patch('/user', async (req, res) => {
-    //   const user = req.body;
-    //   const filter = { email: user.email };
-    //   const updateDoc = {
-    //     $set: {
-    //       lastLoggedAt: user.lastLoggedAt,
-    //     },
-    //   };
-    //   const result = await userCollection.updateOne(filter, updateDoc);
-    //   res.send(result);
-    // });
-
-    // app.delete('/user/:id', async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) };
-    //   const result = await userCollection.deleteOne(query);
-    //   res.send(result);
-    // });
-
     // Send a ping to confirm a successful connection
-    await client.db('admin').command({ ping: 1 });
-    console.log(
-      'Pinged your deployment. You successfully connected to MongoDB!'
-    );
+    // await client.db('admin').command({ ping: 1 });
+    // console.log(
+    //   'Pinged your deployment. You successfully connected to MongoDB!'
+    // );
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
