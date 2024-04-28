@@ -2,12 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
-// all configs
+// all config
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// all middlewares
+// all middleware
 app.use(cors());
 app.use(express.json());
 
@@ -106,9 +106,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-  res.send('SH_TOURISM server is running');
+  res.send('SA-Tourism server is running');
 });
 
 app.listen(port, () => {
-  console.log(`SH_TOURISM server is running on port: ${port}`);
+  console.log(`SA-Tourism server is running on port: ${port}`);
 });
