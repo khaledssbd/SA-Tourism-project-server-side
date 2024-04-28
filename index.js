@@ -23,12 +23,8 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    const saTourismSpotCollection = client
-      .db('saTourismDB')
-      .collection('places');
-    const saTourismCountryCollection = client
-      .db('saTourismDB')
-      .collection('countries');
+    const saTourismSpotCollection = client.db('saTourismDB').collection('places');
+    const saTourismCountryCollection = client.db('saTourismDB').collection('countries');
 
     app.get('/allTourCountries', async (req, res) => {
       const cursor = saTourismCountryCollection.find();
@@ -54,6 +50,7 @@ async function run() {
       const result = await saTourismSpotCollection.findOne(query);
       res.send(result);
     });
+    
     app.get('/getSpotsByCountry/:country', async (req, res) => {
       const country = req.params.country;
       const query = { country_Name: country };
