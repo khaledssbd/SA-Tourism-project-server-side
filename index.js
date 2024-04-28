@@ -50,10 +50,10 @@ async function run() {
       const result = await saTourismSpotCollection.findOne(query);
       res.send(result);
     });
-    
+
     app.get('/getSpotsByCountry/:country', async (req, res) => {
-      const country = req.params.country;
-      const query = { country_Name: country };
+      const Country = req.params.country;
+      const query = { country_Name: Country };
       const result = await saTourismSpotCollection.find(query).toArray();
       res.send(result);
     });
