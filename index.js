@@ -8,18 +8,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // all middleware
-app.use(
-  cors({
-    origin: [
-      'http://localhost:5173',
-      'https://sa-tourism-khaled.web.app',
-      'https://ph-a10-client-by-khaled.vercel.app',
-      'https://ph-a10-client-by-khaled.surge.sh',
-      'https://ph-a10-client-by-khaled.netlify.app',
-    ],
-  })
-);
-
+app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2brfitt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
