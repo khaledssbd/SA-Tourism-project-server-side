@@ -8,7 +8,11 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // all middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'http://localhost:5174'],
+  })
+);
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2brfitt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -23,8 +27,12 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    const saTourismSpotCollection = client.db('saTourismDB').collection('places');
-    const saTourismCountryCollection = client.db('saTourismDB').collection('countries');
+    const saTourismSpotCollection = client
+      .db('saTourismDB')
+      .collection('places');
+    const saTourismCountryCollection = client
+      .db('saTourismDB')
+      .collection('countries');
 
     app.get('/allTourCountries', async (req, res) => {
       const cursor = saTourismCountryCollection.find();
@@ -94,10 +102,10 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection to DB
-    // await client.db('admin').command({ ping: 1 });
-    // console.log(
-    //   'Pinged your deployment. You successfully connected to MongoDB!'
-    // );
+    await client.db('admin').command({ ping: 1 });
+    console.log(
+      'Pinged your deployment. You successfully connected to MongoDB!'
+    );
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
