@@ -2,11 +2,10 @@
 
 ## Live site:
 
-- Click here- [SA-Tourism on firebase](https://sa-tourism-khaled.web.app)
-- Click here- [SA-Tourism on vercel](https://ph-a10-client-by-khaled.vercel.app)
-- Click here- [SA-Tourism on surge](https://ph-a10-client-by-khaled.surge.sh)
-- Click here-
-  [SA-Tourism on netlify](https://ph-a10-client-by-khaled.netlify.app)
+- [SA-Tourism on firebase](https://sa-tourism-khaled.web.app)
+- [SA-Tourism on vercel](https://ph-a10-client-by-khaled.vercel.app)
+- [SA-Tourism on surge](https://ph-a10-client-by-khaled.surge.sh)
+- [SA-Tourism on netlify](https://ph-a10-client-by-khaled.netlify.app)
 
 ## GitHub Repository:
 
@@ -23,22 +22,16 @@ tourists can get details of spots and plan for future tour.
 
 # Features:
 
-- Creative Design
 - All Device Responsive
-- CRUD or REST(Representational State Transfer) API(Application Programming
-  Interface) support with post get put delete requests
-- Custom API and Server configuration with database
 - tailwind CSS
 - Awesome dark theme support
 - Toast Message and sweet-alert2
 - aos, swiper and animate.css Implementation
 - Environment Variable configuration
-- Regex with Valid email
-- Regex with Uppercase letters, lowercase letters and 6 characters in password
+- Regex with Valid email, Uppercase letters, lowercase letters and 6 characters
+  in password
 - Protected routes
 - Local Storage and API post configuration with Protected route
-- Adaptable & Robust
-- No lorem text and no javascript default alert
 
 # npm Packages
 
