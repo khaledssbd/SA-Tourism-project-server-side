@@ -10,7 +10,14 @@ const port = process.env.PORT || 5000;
 // all middleware
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'https://sa-tourism-khaled.web.app',
+      'https://ph-a10-client-by-khaled.vercel.app',
+      'https://ph-a10-client-by-khaled.surge.sh',
+      'https://sa-tourism-by-khaled.netlify.app',
+    ],
   })
 );
 app.use(express.json());
